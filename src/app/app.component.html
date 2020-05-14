@@ -1,0 +1,111 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: white;
+    text-decoration: none;
+    padding-left: 20px;
+  }
+
+  a:hover {
+    color: darkgrey;
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <nav>
+    <a routerLink="/exemplo11">Exemplo 11</a>
+    <a routerLink="/exemplo12">Exemplo 12</a>
+    <a routerLink="/exemplo13">Exemplo 13</a>
+  </nav>
+</div>
+
+<div class="content" role="main">
+  <router-outlet></router-outlet>
+  <div class="container">
+    <br />
+    <h1 class="text-center">{{title}}</h1>
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Stock</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products">
+          <td>{{p.id}}</td>
+          <td>{{p.title}}</td>
+          <td>{{p.price}}</td>
+          <td>{{p.stock}}</td>
+          <td>
+            <app-stock-status [productId]='p.id' [stock]='p.stock' (stockValueChange)='changeStockValue($event)'>
+            </app-stock-status>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
